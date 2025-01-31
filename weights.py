@@ -5,9 +5,10 @@ import numpy as np
 def solve_weights(I_util, I_fair, lambda_param=1.0):
     """
     Solve the linear programming problem:
-    minimize sum(I_util * epsilon) + lambda * sum(epsilon)
+    minimize sum(I_util * epsilon) + lambda * gp.quicksum(epsilon[i]**2 for i in range(n))**0.5
     subject to:
         sum(I_fair * epsilon) <= 0
+        sum(I_util * epsilon) >= -delta
         epsilon <= epsilon_bar
         epsilon >= -epsilon_bar
     
@@ -29,13 +30,15 @@ def solve_weights(I_util, I_fair, lambda_param=1.0):
         # Create variables
         epsilon = m.addVars(n, lb=-GRB.INFINITY, ub=GRB.INFINITY, name="epsilon")
         
-        # Set objective: minimize sum(I_util * epsilon) + lambda * sum(epsilon)
+        # Set objective: minimize sum(I_util * epsilon) + lambda * gp.quicksum(epsilon[i]**2 for i in range(n))**0.5
         obj = gp.quicksum(I_util[i] * epsilon[i] for i in range(n)) + \
-              lambda_param * gp.quicksum(epsilon[i] for i in range(n))
+              lambda_param * gp.quicksum(epsilon[i]**2 for i in range(n))**0.5
         m.setObjective(obj, GRB.MINIMIZE)
         
-        # Add fairness constraint: sum(I_fair * epsilon) <= 0
+        # Add fairness constraint: sum(I_fair * epsilon) <= 0 & sum(I_util * epsilon) >= -delta
+        delta = 0.1
         m.addConstr(gp.quicksum(I_fair[i] * epsilon[i] for i in range(n)) <= 0, "fairness")
+        m.addConstr(gp.quicksum(I_util[i] * epsilon[i] for i in range(n)) >= -delta, "fairness")
         
         # Add bound constraints for each epsilon
         epsilon_bar = 1.0  # You can adjust this value
