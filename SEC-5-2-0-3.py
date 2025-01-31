@@ -9,7 +9,7 @@ from dataset2 import fetch_data2, DataTemplate2
 from eval import Evaluator
 from model import LogisticRegression, NNLastLayerIF, MLPClassifier, ResNetLastLayerIF, ResNetBase
 from fair_fn import grad_ferm, grad_dp, loss_ferm, loss_dp
-from utils import fix_seed, save2csv, AverageMeter, accuracy  # 添加需要的utils函数
+from utils import fix_seed, save2csv, AverageMeter, accuracy  
 from robust_fn import grad_robust, calc_robust_acc
 from robust_fn_nn import grad_robust_nn, calc_robust_acc_nn
 from unlearn import CU_k, EU_k, GA, IF  # Import directly from unlearn package
@@ -524,25 +524,7 @@ if __name__ == "__main__":
     model.forward = new_forward.__get__(model)
 
     # Execute unlearning
-    if args.unlearn_method.lower() == "euk":
-        unlearn_model, unlearn_metrics = EU_k(
-            data_loaders=data_loaders,
-            model=model,
-            criterion=None,
-            optimizer=None,
-            epoch=0,
-            args=args
-        )
-    elif args.unlearn_method.lower() == "cuk":
-        unlearn_model, unlearn_metrics = CU_k(
-            data_loaders=data_loaders,
-            model=model,
-            criterion=criterion,
-            optimizer=optimizer,
-            epoch=0,
-            args=args
-        )
-    elif args.unlearn_method.lower() == "if":
+    if args.unlearn_method.lower() == "if":
         unlearn_model, unlearn_metrics = IF(
             data_loaders=data_loaders,
             model=model,
