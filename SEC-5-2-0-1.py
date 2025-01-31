@@ -522,25 +522,7 @@ if __name__ == "__main__":
     model.forward = new_forward.__get__(model)
 
     # Execute unlearning
-    if args.unlearn_method.lower() == "euk":
-        unlearn_model, unlearn_metrics = EU_k(
-            data_loaders=data_loaders,
-            model=model,
-            criterion=None,
-            optimizer=None,
-            epoch=0,
-            args=args
-        )
-    elif args.unlearn_method.lower() == "cuk":
-        unlearn_model, unlearn_metrics = CU_k(
-            data_loaders=data_loaders,
-            model=model,
-            criterion=criterion,
-            optimizer=optimizer,
-            epoch=0,
-            args=args
-        )
-    elif args.unlearn_method.lower() == "if":
+    if args.unlearn_method.lower() == "if":
         unlearn_model, unlearn_metrics = IF(
             data_loaders=data_loaders,
             model=model,
