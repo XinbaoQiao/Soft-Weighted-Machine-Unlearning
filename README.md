@@ -1,3 +1,7 @@
+This repository contains the source code for the paper “Soft Weighted Machine Unlearning”. We will organize a complete repository including introduction and hands-on implementation in the future.
+
+We provide a simple implementation of soft weighting along with the presentation of results.
+
 *Section 1*: SEC-1-1.py
 
 > SEC-1-1.py: Actual Changes in Utility and Fairness/Robustness for each sample's leave-one-out model.
