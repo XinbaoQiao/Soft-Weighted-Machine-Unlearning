@@ -1,4 +1,4 @@
-This repository contains the source code for the paper “Soft Weighted Machine Unlearning”. We will organize a complete repository including introduction and hands-on implementation in the future.
+This repository contains the source code for the paper “Soft Weighted Machine Unlearning”. We will organize a complete repository including introduction and step-by-step guidance in the future.
 
 We provide a simple implementation of soft weighting along with the presentation of results.
 
