@@ -20,4 +20,4 @@ We provide a simple implementation of soft weighting along with the presentation
 
 > SEC-5-1-0-3.py,  SEC-5-1-0-4.py, SEC-5-1-1-3.py: Actual Changes vs. Approximate Changes.
 > 
-> SEC-5-2-0-3.py: PCA Visualization of the Decision Boundary.
+> SEC-5-2-0-3.py: Performance on Fairness/Robustness Tasks..
