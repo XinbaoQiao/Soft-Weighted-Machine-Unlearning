@@ -1,0 +1,16 @@
+{
+    "dataset": "bank",
+    "num_data": -1,
+    "metric": "robust",
+    "seed": 100,
+    "model_type": "nn",
+    "gpu_id": 1,
+    "lr": 0.01,
+    "weight_decay": 0.001,
+    "batch_size": 18110,
+    "weight_scheme": "soft-2.3",
+    "feature_data_ratio": 0.01,
+    "arch": "mlp",
+    "unlearn_epochs": 30,
+    "unlearn_method": "if"
+}

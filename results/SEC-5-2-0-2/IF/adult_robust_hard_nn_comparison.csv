@@ -1,0 +1,3 @@
+Metric,Pre-unlearning,Post-unlearning,Improvement
+Utility Accuracy,82.20%,81.34%,-0.86%
+Robustness Accuracy,17.7955%,81.78%,+63.98%
